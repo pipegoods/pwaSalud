@@ -1,0 +1,14 @@
+
+<div *ngIf="!(authS.user | async); else alreadyLoggedIn">
+  <p>
+    Iniciar seccion con google
+  </p>
+  <button mat-raised-button color="warn" (click)="signInWithGoogle()">Google</button>
+  
+</div>
+
+<ng-template #alreadyLoggedIn>
+  <p>
+    You are logged in
+  </p>
+</ng-template>
