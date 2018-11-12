@@ -1,5 +1,6 @@
 
-<div *ngIf="!(authS.user | async); else alreadyLoggedIn">
+<ng-container *ngIf="(authS.user | async) || {} as user">
+<div *ngIf="!user.uid">
   <p>
     Iniciar seccion con google
   </p>
@@ -7,8 +8,27 @@
   
 </div>
 
-<ng-template #alreadyLoggedIn>
-  <p>
-    You are logged in
-  </p>
-</ng-template>
+
+  
+  <form [formGroup]="detailForm" *ngIf="user.uid && !(user.sede && user.rol)" (ngSubmit)="setCatchPhrase(user)">
+    <h4>Elige la sede:</h4>
+    <mat-form-field>
+      <mat-select placeholder="Sede" formControlName="sede">
+        <mat-option *ngFor="let sede of sedes" [value]="sede.value">{{sede.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h4>Elige rol:</h4>
+    <mat-form-field>
+      <mat-select placeholder="Rol" formControlName="rol">
+        <mat-option *ngFor="let rol of roles" [value]="rol.value">{{rol.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+   
+    <button type="submit" [disabled]="!detailForm.valid" mat-raised-button color="primary">Registrarse</button>
+    
+  </form>
+  <p *ngIf="user.sede && user.rol">
+    You have completed the form!
+</p>
+</ng-container>

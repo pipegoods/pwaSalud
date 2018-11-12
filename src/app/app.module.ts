@@ -13,8 +13,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule } from '@angular/material';
 import { AtenderComponent } from './componentes/atender/atender.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import {MatInputModule} from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,10 +29,12 @@ import { AtenderComponent } from './componentes/atender/atender.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
+    AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+    MatInputModule, FormsModule, MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

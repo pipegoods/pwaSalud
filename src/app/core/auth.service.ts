@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { auth } from 'firebase';
-import * as firebase from 'firebase/app';
+
+
 import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
 
 import {
   AngularFirestore,
@@ -15,6 +16,8 @@ interface User {
   email?: string | null;
   photoURL?: string;
   displayName?: string;
+  sede?: string;
+  rol?: string;
 }
 
 @Injectable({
@@ -22,7 +25,9 @@ interface User {
 })
 export class AuthService {
   user: Observable<User | null>;
-  
+  authState: any = null;
+  rol = '';
+  sede = '';
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -31,6 +36,7 @@ export class AuthService {
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
+          this.authState = user;
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
@@ -39,8 +45,18 @@ export class AuthService {
     );
   }
 
+   // Returns true if user is logged in
+   get authenticated(): boolean {
+    return this.authState !== null;
+  }
+
+  // Returns current user data
+  get currentUser(): any {
+    return this.afs.doc<User>(`users/${this.authState.uid}`).valueChanges();
+  }
+
   googleLogin() {
-    const provider = new auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
   }
 
@@ -54,16 +70,29 @@ export class AuthService {
       .catch(error => this.handleError(error));
   }
 
+  updateUser(user: User, data: any) { 
+    return this.afs.doc(`users/${user.uid}`).update(data)
+  }
+
+
   private updateUserData(user: User) {
+    
+    
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
-
+    userRef.valueChanges().subscribe((user)=>{
+       this.rol = user.rol;
+      this.sede = user.sede;
+    })
+    
     const data: User = {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
+      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+      rol: this.rol || '',
+      sede: this.sede || ''
     };
     return userRef.set(data);
   }
