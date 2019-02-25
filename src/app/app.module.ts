@@ -18,6 +18,10 @@ import { AtenderComponent } from './componentes/atender/atender.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,7 @@ import {MatInputModule} from '@angular/material/input';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-    MatInputModule, FormsModule, MatSelectModule
+    MatInputModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

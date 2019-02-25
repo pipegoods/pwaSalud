@@ -1,3 +1,55 @@
-<p>
-  atender works!
-</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Formulario atencion paciente</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+    <mat-radio-group>
+        <mat-radio-button value="1">Estudiante</mat-radio-button>
+        <mat-radio-button value="2">Empleado</mat-radio-button>
+      </mat-radio-group>
+  <mat-grid-list cols="2" rowHeight="100px">
+    <form class="example-form">
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="1">
+
+          <mat-form-field class="example-full-width">
+            <input type="number" matInput placeholder="No Identificacion" min="0">
+            <mat-icon matSuffix>panorama_wide_angle
+            </mat-icon>
+          </mat-form-field>
+          
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="1">
+
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Nombres y apellidos">
+            <mat-icon matSuffix>face</mat-icon>
+          </mat-form-field>
+          
+    </mat-grid-tile>
+    
+    <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="3">
+
+          <mat-form-field class="example-full-width">
+            <input type="tel" matInput placeholder="Telephone">
+            <mat-icon matSuffix>accessibility</mat-icon>
+          </mat-form-field>
+
+    </mat-grid-tile>
+  </form>
+  </mat-grid-list>
+</mat-card-content>
+  
+  <mat-card-actions>
+      <button mat-button>Ok</button>
+    </mat-card-actions>
+</mat-card>
+
+
+
+
