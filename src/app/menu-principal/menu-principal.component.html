@@ -11,6 +11,9 @@
       <div *ngIf="(authS.user | async)">
         <a mat-list-item routerLink="/atender">Atender</a>
       </div>
+      <div *ngIf="(authS.user | async)">
+        <a mat-list-item routerLink="/inventario">inventario</a>
+      </div>
 
     </mat-nav-list>
   </mat-sidenav>

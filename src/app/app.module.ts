@@ -21,7 +21,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
-
+import { InventarioComponent } from './componentes/inventario/inventario.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import {MatRadioModule} from '@angular/material/radio';
     LoginComponent,
     HomeComponent,
     MenuPrincipalComponent,
-    AtenderComponent
+    AtenderComponent,
+    InventarioComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ import {MatRadioModule} from '@angular/material/radio';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-    MatInputModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule
+    MatInputModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
