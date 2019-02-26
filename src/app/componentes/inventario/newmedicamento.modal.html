@@ -1,23 +1,25 @@
 <div class="example-container">
-    <h4>Añadir medicamentos</h4>
+    <h4>Añadir medicamentos </h4>
     <mat-form-field>
-      <input matInput placeholder="Nombre">
+      <input matInput placeholder="Nombre" value="{{data.datos.Nombre}}">
     </mat-form-field>
     
     <mat-form-field>
-        <input matInput placeholder="Presentacion">
+        <input matInput placeholder="Presentacion" value="{{data.datos.pres}}">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput type="number" min="0" placeholder="Cantidad">
+        <input matInput type="number" min="0" placeholder="Cantidad" value="{{data.datos.cant}}">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="myDatepicker" placeholder="Fecha de vencimiento">
+        <input matInput [matDatepicker]="myDatepicker" placeholder="Fecha de vencimiento" value="{{data.datos.fven |date: 'MM/dd/yyyy'}}">
         <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker></mat-datepicker>
     </mat-form-field>
 
-    <div><button mat-button color="primary">Guardar</button>
-      <button mat-button color="warn">Cancelar</button></div>
+    <div>
+      <button mat-button color="primary">Guardar</button>
+      <button mat-button color="warn">Cancelar</button>
+    </div>
   </div>

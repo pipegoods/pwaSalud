@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatPaginator, MatBottomSheetRef, MatBottomSheet} from '@angular/material';
+import {Component, OnInit, ViewChild, Inject} from '@angular/core';
+import {MatTableDataSource, MatPaginator, MatBottomSheetRef, MatBottomSheet, MAT_BOTTOM_SHEET_DATA} from '@angular/material';
 
 export interface PeriodicElement {
   Nombre: string;
@@ -15,6 +15,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {ID: 3, Nombre: 'Bazuco', pres: "Polvo", cant: 5, fven: Date.now()},
   {ID: 4, Nombre: 'Galezo', pres: "Humana", cant: 5, fven: Date.now()}
 ];
+
+
 
 @Component({
   selector: 'app-inventario',
@@ -37,9 +39,30 @@ export class InventarioComponent implements OnInit {
   }
 
   openBottomSheet(): void {
-    this.bottomSheet.open(BottomSheetExampleSheet);
+    this.bottomSheet.open(BottomSheetExampleSheet, {
+      data: { 
+        datos:{
+          Nombre: '',
+          pres: '',
+          cant: '',
+          fven: ''
+
+        }
+       },
+    });
   }
 
+  editMed(id) {
+    var datos =  ELEMENT_DATA.find(function(element) {
+      return element.ID == id;
+    });
+    
+    this.bottomSheet.open(BottomSheetExampleSheet, {
+      data: { 
+        datos
+       },
+    });
+  }
 }
 
 @Component({
@@ -48,7 +71,11 @@ export class InventarioComponent implements OnInit {
   styleUrls: ['./inventario.component.css']
 })
 export class BottomSheetExampleSheet {
-  constructor(private bottomSheetRef: MatBottomSheetRef) {}
-
- 
+  constructor(private bottomSheetRef: MatBottomSheetRef,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
+      console.log(data.datos);
+    }
+  
+    
+  
 }
