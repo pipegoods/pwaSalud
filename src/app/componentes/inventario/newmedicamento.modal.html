@@ -1,21 +1,23 @@
-<mat-nav-list>
-        <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Keep</span>
-          <span mat-line>Add to a note</span>
-        </a>
-      
-        <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Docs</span>
-          <span mat-line>Embed in a document</span>
-        </a>
-      
-        <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Plus</span>
-          <span mat-line>Share with your friends</span>
-        </a>
-      
-        <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Hangouts</span>
-          <span mat-line>Show to your coworkers</span>
-        </a>
-      </mat-nav-list>
+<div class="example-container">
+    <h4>Añadir medicamentos</h4>
+    <mat-form-field>
+      <input matInput placeholder="Nombre">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput placeholder="Presentacion">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" min="0" placeholder="Cantidad">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="myDatepicker" placeholder="Fecha de vencimiento">
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+    </mat-form-field>
+
+    <div><button mat-button color="primary">Guardar</button>
+      <button mat-button color="warn">Cancelar</button></div>
+  </div>

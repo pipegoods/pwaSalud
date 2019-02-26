@@ -11,9 +11,11 @@ table {
     width: 10%;
   }
 
-  th.mat-sort-header-sorted {
-    color: black;
+  .example-container {
+    display: flex;
+    flex-direction: column;
   }
-  mat-grid-tile {
-    background: lightblue;
+  
+  .example-container > * {
+    width: 100%;
   }

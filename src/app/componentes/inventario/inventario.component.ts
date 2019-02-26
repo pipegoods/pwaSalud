@@ -15,6 +15,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {ID: 3, Nombre: 'Bazuco', pres: "Polvo", cant: 5, fven: Date.now()},
   {ID: 4, Nombre: 'Galezo', pres: "Humana", cant: 5, fven: Date.now()}
 ];
+
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
@@ -36,20 +37,18 @@ export class InventarioComponent implements OnInit {
   }
 
   openBottomSheet(): void {
-    this.bottomSheet.open(BottomSheetOverviewExampleSheet);
+    this.bottomSheet.open(BottomSheetExampleSheet);
   }
 
 }
 
 @Component({
-  selector: 'bottom-sheet-overview-example-sheet',
+  selector: 'bottom-sheet-overview',
   templateUrl: 'newmedicamento.modal.html',
+  styleUrls: ['./inventario.component.css']
 })
-export class BottomSheetOverviewExampleSheet {
-  constructor(private bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+export class BottomSheetExampleSheet {
+  constructor(private bottomSheetRef: MatBottomSheetRef) {}
 
-  openLink(event: MouseEvent): void {
-    this.bottomSheetRef.dismiss();
-    event.preventDefault();
-  }
+ 
 }

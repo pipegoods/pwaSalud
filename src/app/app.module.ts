@@ -13,7 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule, MatNativeDateModule } from '@angular/material';
 import { AtenderComponent } from './componentes/atender/atender.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -25,6 +25,8 @@ import { InventarioComponent } from './componentes/inventario/inventario.compone
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {BottomSheetExampleSheet} from './componentes/inventario/inventario.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -33,16 +35,20 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     HomeComponent,
     MenuPrincipalComponent,
     AtenderComponent,
-    InventarioComponent
+    InventarioComponent,
+    BottomSheetExampleSheet
   ],
   imports: [
     BrowserModule,
+    MatNativeDateModule, MatDatepickerModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
     MatInputModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule
+  ],entryComponents: [
+    BottomSheetExampleSheet
   ],
   providers: [],
   bootstrap: [AppComponent]
