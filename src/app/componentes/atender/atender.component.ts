@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./atender.component.css']
 })
 export class AtenderComponent implements OnInit {
-
+  tipoPaciente: string;
   constructor() { }
 
   ngOnInit() {

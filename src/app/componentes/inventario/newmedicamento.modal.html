@@ -12,9 +12,9 @@
         <input matInput type="number" min="0" placeholder="Cantidad" value="{{data.datos.cant}}">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="demo-full-width">
         <input matInput [matDatepicker]="myDatepicker" placeholder="Fecha de vencimiento" value="{{data.datos.fven |date: 'MM/dd/yyyy'}}">
-        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix touchUi="true" [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker></mat-datepicker>
     </mat-form-field>
 

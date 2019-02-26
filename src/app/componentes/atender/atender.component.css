@@ -1,7 +1,21 @@
-.example-form {
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 80%;
-  }
+mat-grid-tile {
+  background: lightblue;
+}
+.demo-toolbar {    
+  display: flex;    
+  align-items: center;    
+  width: 100%;    
+}    
+ 
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
