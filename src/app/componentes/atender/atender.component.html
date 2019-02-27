@@ -1,80 +1,102 @@
-<!-- Main Toolbar of an App -->    
-<mat-toolbar color="accent">    
-  <span>
-    Atender Paciente
-  </span>    
-  <span class="demo-toolbar"></span>    
-</mat-toolbar>    
-
-  <mat-card>
-      <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Datos personales</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-          <div class="example-container">
-            <br>
-              <mat-radio-group [(ngModel)]="tipoPaciente">
-                  <mat-radio-button value="1">Estudiante</mat-radio-button>
-                  <mat-radio-button value="2">Empleado</mat-radio-button>
-              </mat-radio-group>
-              <mat-form-field>
-                  <input matInput placeholder="Nombre completo">
-              </mat-form-field>
-
-              <div class="example-container" *ngIf="tipoPaciente == '1'"> 
-                  <mat-form-field>
-                      <input matInput placeholder="Codigo">
-                  </mat-form-field>
-                  <mat-form-field>
-                      <input matInput placeholder="Semestre">
-                  </mat-form-field>
-              </div>
-              <div class="example-container" *ngIf="tipoPaciente == '2'"> 
-                  <mat-form-field>
-                      <mat-select placeholder="Estamento">
-                        <mat-option value="1">Administrativo</mat-option>
-                        <mat-option value="1">Docente</mat-option>
-                      </mat-select>
+<mat-toolbar color="primary">    
+    <span class="text-center">
+      Atender Paciente <i class="fa fa-heart"></i>
+    </span>    
+    <span class="demo-toolbar"></span>    
+  </mat-toolbar>  
+  <div class="container">
+      
+      
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Datos personales</mat-card-title>
+            </mat-card-header>
+      
+            <mat-card-content>
+                <div class="example-container">
+                  <br>
+                    <mat-radio-group [(ngModel)]="tipoPaciente">
+                        <mat-radio-button value="1">Estudiante</mat-radio-button>
+                        <mat-radio-button value="2">Empleado</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Documento de identidad">
                     </mat-form-field>
-                  <mat-form-field>
-                      <input matInput placeholder="Cargo">
-                  </mat-form-field>
-              </div>
-            
-            </div>
-      </mat-card-content>
-  </mat-card>
-  <mat-divider></mat-divider>
-
-  <mat-card>
-      <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Observaciones medicas</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-          <div class="example-container">            
-              <mat-form-field>
-                  <mat-label>Diagnostico medico</mat-label>
-                  <textarea matInput
-                            cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize"
-                            cdkAutosizeMinRows="2"
-                            cdkAutosizeMaxRows="5"></textarea>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Observaciones</mat-label>
-                    <textarea matInput
-                              cdkTextareaAutosize
-                              #autosize="cdkTextareaAutosize"
-                              cdkAutosizeMinRows="2"
-                              cdkAutosizeMaxRows="5"></textarea>
-                  </mat-form-field>
-            </div>
-      </mat-card-content>
-  </mat-card>
-  <button mat-raised-button color="primary">Guardar</button>
-  <button mat-raised-button color="warn">Borrar</button>
+                    <mat-form-field>
+                        <input matInput placeholder="Nombre completo">
+                    </mat-form-field>
+      
+                    <div class="example-container" *ngIf="tipoPaciente == '1'"> 
+                        <mat-form-field>
+                            <input matInput placeholder="Codigo">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Semestre">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="Programa">
+                              <mat-option value="1">Rellenar con </mat-option>
+                              <mat-option value="2">Programas   </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div class="example-container" *ngIf="tipoPaciente == '2'"> 
+                        <mat-form-field>
+                            <mat-select placeholder="Estamento">
+                              <mat-option value="1">Administrativo</mat-option>
+                              <mat-option value="2">Docente</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Cargo">
+                        </mat-form-field>
+                    </div>
+                  
+                  </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-divider></mat-divider>
+      
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Observaciones medicas</mat-card-title>
+            </mat-card-header>
+      
+            <mat-card-content>
+                <div class="example-container">            
+                    <mat-form-field>
+                        <mat-label>Diagnostico medico</mat-label>
+                        <textarea matInput
+                                  cdkTextareaAutosize
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="2"
+                                  cdkAutosizeMaxRows="5"></textarea>
+                      </mat-form-field>
+      
+                      <mat-form-field>
+                          <mat-label>Observaciones</mat-label>
+                          <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="2"
+                                    cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                        <!-- <div> EN DUDA
+                            <mat-form-field>
+                                <mat-select placeholder="Medicina">
+                                  <mat-option value="1">Administrativo</mat-option>
+                                  <mat-option value="2">Docente</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                              <mat-form-field>
+                                <input matInput type="number" placeholder="Cantidad">
+                            </mat-form-field>
+                        </div> -->
+                  </div>
+            </mat-card-content>
+        </mat-card>
+        <button mat-raised-button color="primary">Guardar</button>
+        <button mat-raised-button color="warn">Borrar</button>
+  </div>

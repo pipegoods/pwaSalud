@@ -27,7 +27,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {BottomSheetExampleSheet} from './componentes/inventario/inventario.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BrowserAnimationsModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-    MatInputModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule
+    MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule
   ],entryComponents: [
     BottomSheetExampleSheet
   ],

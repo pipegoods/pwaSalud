@@ -1,51 +1,54 @@
 <mat-toolbar color="accent">    
-  <span>Inventario</span>    
+  <span>Inventario </span>    
   <span class="demo-toolbar"></span>        
 </mat-toolbar>    
 
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar medicamento">
-  </mat-form-field>
-
-  <div>
-    <button mat-raised-button (click)="openBottomSheet()" color="accent">Nuevo medicamento</button> 
+  <div class="container">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar medicamento">
+    </mat-form-field>
+  
+    <div>
+      <button mat-raised-button (click)="openBottomSheet()" color="accent">Nuevo medicamento</button> 
+    </div>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Presentacion">
+        <th mat-header-cell *matHeaderCellDef> Presentacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.pres}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.cant}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Fecha vencimiento">
+        <th mat-header-cell *matHeaderCellDef> Fecha de vencimiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.fven |date: "MM/dd/yyyy"}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>   
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-raised-button (click)="editMed(element.ID)" color="primary">Editar</button> 
+          <button mat-raised-button color="warn">Retirar</button> 
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  
+  
   </div>
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="Nombre">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Presentacion">
-      <th mat-header-cell *matHeaderCellDef> Presentacion </th>
-      <td mat-cell *matCellDef="let element"> {{element.pres}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Cantidad">
-      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.cant}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Fecha vencimiento">
-      <th mat-header-cell *matHeaderCellDef> Fecha de vencimiento </th>
-      <td mat-cell *matCellDef="let element"> {{element.fven |date: "MM/dd/yyyy"}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef> Acciones </th>   
-      <td mat-cell *matCellDef="let element"> 
-        <button mat-raised-button (click)="editMed(element.ID)" color="primary">Editar</button> 
-        <button mat-raised-button color="warn">Retirar</button> 
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
