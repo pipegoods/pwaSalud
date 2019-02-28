@@ -11,6 +11,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { switchMap, startWith, tap, filter } from 'rxjs/operators';
+
 interface User {
   uid: string;
   email?: string | null;
@@ -84,18 +85,20 @@ export class AuthService {
     userRef.valueChanges().subscribe((user)=>{
        this.rol = user.rol;
       this.sede = user.sede;
+      const data: User = {
+        uid: user.uid,
+        email: user.email || null,
+        displayName: user.displayName || 'nameless user',
+        photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+        rol: this.rol || '',
+        sede: this.sede || ''
+      };
+      return userRef.set(data);
     })
     
-    const data: User = {
-      uid: user.uid,
-      email: user.email || null,
-      displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
-      rol: this.rol || '',
-      sede: this.sede || ''
-    };
-    return userRef.set(data);
+    
   }
+
 
   private handleError(error: Error) {
     console.error(error);
