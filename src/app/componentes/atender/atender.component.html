@@ -6,7 +6,19 @@
   </mat-toolbar>  
   <div class="container">
       
-      
+        <ng-container *ngIf="exits_paciente; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+            <mat-card>
+                El usuario existe
+            </mat-card>
+        </ng-template>
+        <ng-template #elseTemplate>
+            <mat-card>
+                El usuario no existe
+            </mat-card>
+        </ng-template>
+        
+
         <mat-card>
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>

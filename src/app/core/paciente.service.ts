@@ -8,7 +8,7 @@ export class PacienteService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  consultarHistorialMedico (documento) {
-    return this.firestore.collection('Pacientes').doc(documento).snapshotChanges();
+  public consultarHistorialMedico (documento) {
+    return this.firestore.collection('Pacientes').doc(documento).get();
   }
 }

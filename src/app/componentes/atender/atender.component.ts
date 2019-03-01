@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'src/app/modelos/paciente.model';
+import { PacienteService } from 'src/app/core/paciente.service';
 
 @Component({
   selector: 'app-atender',
@@ -20,14 +21,29 @@ export class AtenderComponent implements OnInit {
     diagnostico: '',
     observaciones: ''
   };
-  constructor() { }
+
+  public registrosMedicos = [];
+  public exits_paciente = false;
+  constructor(private pacienteService : PacienteService) { }
 
   ngOnInit() {
     
   }
 
   consultarHistorialMedico () {
-        
+    if (this.formPaciente.documento != '') {
+      this.pacienteService.consultarHistorialMedico(this.formPaciente.documento.toString()).subscribe((pacienteSnap) => {
+        this.registrosMedicos = [];
+        if (pacienteSnap.exists) {
+          console.log(pacienteSnap.data());
+          this.exits_paciente = true;
+        } else {
+          console.log("No existe el coso ese");
+          this.exits_paciente = false;
+        }
+      });
+      
+    }    
   }
 
   guardar () {
