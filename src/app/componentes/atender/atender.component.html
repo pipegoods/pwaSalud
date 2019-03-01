@@ -16,40 +16,40 @@
             <mat-card-content>
                 <div class="example-container">
                   <br>
-                    <mat-radio-group [(ngModel)]="tipoPaciente">
+                    <mat-radio-group [(ngModel)]="formPaciente.tipoPaciente">
                         <mat-radio-button value="1">Estudiante</mat-radio-button>
                         <mat-radio-button value="2">Empleado</mat-radio-button>
                     </mat-radio-group>
                     <mat-form-field>
-                        <input matInput type="number" placeholder="Documento de identidad">
+                        <input matInput (blur)="consultarHistorialMedico()" [(ngModel)]="formPaciente.documento" type="number" placeholder="Documento de identidad">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Nombre completo">
+                        <input matInput [(ngModel)]="formPaciente.nombre" placeholder="Nombre completo">
                     </mat-form-field>
       
-                    <div class="example-container" *ngIf="tipoPaciente == '1'"> 
+                    <div class="example-container" *ngIf="formPaciente.tipoPaciente == '1'"> 
                         <mat-form-field>
-                            <input matInput placeholder="Codigo">
+                            <input matInput [(ngModel)]="formPaciente.codigo" placeholder="Codigo">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Semestre">
+                            <input matInput [(ngModel)]="formPaciente.semestre" placeholder="Semestre">
                         </mat-form-field>
                         <mat-form-field>
-                            <mat-select placeholder="Programa">
+                            <mat-select [(ngModel)]="formPaciente.programa" placeholder="Programa">
                               <mat-option value="1">Rellenar con </mat-option>
                               <mat-option value="2">Programas   </mat-option>
                             </mat-select>
                           </mat-form-field>
                     </div>
-                    <div class="example-container" *ngIf="tipoPaciente == '2'"> 
+                    <div class="example-container" *ngIf="formPaciente.tipoPaciente == '2'"> 
                         <mat-form-field>
-                            <mat-select placeholder="Estamento">
+                            <mat-select [(ngModel)]="formPaciente.estamento" placeholder="Estamento">
                               <mat-option value="1">Administrativo</mat-option>
                               <mat-option value="2">Docente</mat-option>
                             </mat-select>
                           </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Cargo">
+                            <input matInput [(ngModel)]="formPaciente.cargo" placeholder="Cargo">
                         </mat-form-field>
                     </div>
                   
@@ -68,7 +68,7 @@
                 <div class="example-container">            
                     <mat-form-field>
                         <mat-label>Diagnostico medico</mat-label>
-                        <textarea matInput
+                        <textarea matInput [(ngModel)]="formPaciente.diagnostico"
                                   cdkTextareaAutosize
                                   #autosize="cdkTextareaAutosize"
                                   cdkAutosizeMinRows="2"
@@ -77,26 +77,16 @@
       
                       <mat-form-field>
                           <mat-label>Observaciones</mat-label>
-                          <textarea matInput
+                          <textarea matInput [(ngModel)]="formPaciente.observaciones"
                                     cdkTextareaAutosize
                                     #autosize="cdkTextareaAutosize"
                                     cdkAutosizeMinRows="2"
                                     cdkAutosizeMaxRows="5"></textarea>
                         </mat-form-field>
-                        <!-- <div> EN DUDA
-                            <mat-form-field>
-                                <mat-select placeholder="Medicina">
-                                  <mat-option value="1">Administrativo</mat-option>
-                                  <mat-option value="2">Docente</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                              <mat-form-field>
-                                <input matInput type="number" placeholder="Cantidad">
-                            </mat-form-field>
-                        </div> -->
+
                   </div>
             </mat-card-content>
         </mat-card>
-        <button mat-raised-button color="primary">Guardar</button>
+        <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
         <button mat-raised-button color="warn">Borrar</button>
   </div>
