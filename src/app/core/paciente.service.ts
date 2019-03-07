@@ -30,8 +30,25 @@ export class PacienteService {
 
   public agregarRegistroMedico (paciente, tipoPaciente){
     if (tipoPaciente == 1) {
-      
+      let registro_aux = paciente.getHistorial.getRegistrosMedicos.pop();
+      return this.firestore.collection('Paciente/Estudiante/Lista/' + paciente.getDocumento.toString() + '/historialMedico/').add(
+        {
+          diagnostico : registro_aux.getDiagnostico,
+          fecha_registro : registro_aux.getFecha,
+          observaciones : registro_aux.getObservaciones
+        }
+      );
     } else {
+      let registro_aux = paciente.getHistorial.getRegistrosMedicos.pop();
+      console.log(registro_aux);
+      
+      return this.firestore.collection('Paciente/Empleado/Lista/' + paciente.getDocumento.toString() + '/historialMedico/').add(
+        {
+          diagnostico : registro_aux.getDiagnostico,
+          fecha_registro : registro_aux.getFecha,
+          observaciones : registro_aux.getObservaciones
+        }
+      );
     }
   }
 

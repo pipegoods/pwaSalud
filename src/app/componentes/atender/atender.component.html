@@ -7,7 +7,15 @@
   <div class="container">
       
         <ng-container *ngIf="estudiante_aux; then thenTemplate;"></ng-container>
+        <ng-container *ngIf="empleado_aux; then thenEmpleado;"></ng-container>
         <ng-template #thenTemplate>
+            <mat-card [style.backgroundColor]="'yellow'">
+                Paciente tiene historial medico <i class="fa fa-search"></i> &nbsp;
+                <button mat-raised-button color="primary" (click)="openDialogHistorialMedico()">Ver registros medicos</button>
+            </mat-card>
+            
+        </ng-template>
+        <ng-template #thenEmpleado>
             <mat-card [style.backgroundColor]="'yellow'">
                 Paciente tiene historial medico <i class="fa fa-search"></i> &nbsp;
                 <button mat-raised-button color="primary" (click)="openDialogHistorialMedico()">Ver registros medicos</button>
@@ -18,7 +26,7 @@
 
         </ng-container>
         <ng-template #historialTemplate>
-            <h5>Paciente: {{estudiante_aux.getNombre}}</h5>
+            <!-- <h5>Paciente: {{estudiante_aux.getNombre}}</h5> -->
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z12">
 
                 <!--- Note that these columns can be defined in any order.
