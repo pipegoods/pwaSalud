@@ -4,7 +4,7 @@ import { Estudiante } from 'src/app/modelos/estudiante.model';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RegistroMedico } from 'src/app/modelos/registro-medico.model';
 import { HistorialMedico } from 'src/app/modelos/historial-medico.model';
-import { Empleo } from 'src/app/modelos/empleo.model';
+import { Empleado } from 'src/app/modelos/empleo.model';
 
 @Component({
   selector: 'app-consultar-historial',
@@ -19,7 +19,7 @@ export class ConsultarHistorialComponent implements OnInit {
   private historialMedico_aux : any;
   private registro : any;
   dataSource: MatTableDataSource<Estudiante>;
-  dataSourceEmpleado : MatTableDataSource<Empleo>;
+  dataSourceEmpleado : MatTableDataSource<Empleado>;
   displayedColumns: string[] = ['documento', 'nombre', 'codigo', 'programa', 'semestre', 'acciones'];
   displayedColumnsEmpleado: string[] = ['documento', 'nombre', 'cargo', 'estamento', 'acciones'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +33,7 @@ export class ConsultarHistorialComponent implements OnInit {
   initFuncion () {
     this.historialMedico_aux = new HistorialMedico();
     this.listaEstudiantes = Array<Estudiante>();
-    this.listaEmpleados = Array<Empleo>();
+    this.listaEmpleados = Array<Empleado>();
      this.in = 0;
     this.in2 = 0;
     this.pacienteService.getListaEstudiantes().subscribe((d)=>{
@@ -69,7 +69,7 @@ export class ConsultarHistorialComponent implements OnInit {
       console.log(d);
       
       d.forEach((dato : {cargo, estamento, nombre, documento}) => {
-        this.listaEmpleados.push(new Empleo (
+        this.listaEmpleados.push(new Empleado (
           dato.cargo, dato.estamento, dato.nombre, dato.documento
         ));
         this.pacienteService.consultarHistorialMedico(dato.documento, 2).subscribe((resultado)=>{

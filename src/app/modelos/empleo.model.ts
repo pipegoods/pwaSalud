@@ -1,7 +1,7 @@
 import { Paciente } from "./paciente.model";
 import { HistorialMedico } from "./historial-medico.model";
 
-export class Empleo extends Paciente{
+export class Empleado extends Paciente{
     private cargo : string;
     private estamento : string;
     

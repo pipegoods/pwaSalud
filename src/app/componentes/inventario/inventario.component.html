@@ -1,5 +1,5 @@
-<mat-toolbar color="accent">    
-  <span>Inventario </span>    
+<mat-toolbar color="accent" *ngIf="aauth.user | async as user">    
+  <span>Inventario sede: {{getSede(user.sede)}}</span>    
   <span class="demo-toolbar"></span>        
 </mat-toolbar>    
 

@@ -3,7 +3,7 @@ import { PacienteService } from 'src/app/core/paciente.service';
 import { Estudiante } from 'src/app/modelos/estudiante.model';
 import { RegistroMedico } from 'src/app/modelos/registro-medico.model';
 import { HistorialMedico } from 'src/app/modelos/historial-medico.model';
-import { Empleo } from 'src/app/modelos/empleo.model';
+import { Empleado } from 'src/app/modelos/empleo.model';
 
 @Component({
   selector: 'app-atender',
@@ -81,7 +81,7 @@ export class AtenderComponent implements OnInit {
           if (datos_personales.exists) {
           console.log(datos_personales.data());
           this.paciente_exist = 1;
-          this.empleado_aux = new Empleo(datos_personales.data().cargo,
+          this.empleado_aux = new Empleado(datos_personales.data().cargo,
           datos_personales.data().estamento,
           datos_personales.data().nombre,
           parseInt(datos_personales.id));
@@ -153,7 +153,7 @@ export class AtenderComponent implements OnInit {
           console.log("Ya puedo crear empleado");
           console.log(this.formPaciente.estamento);
           
-          this.empleado_aux = new Empleo(this.formPaciente.cargo, this.formPaciente.estamento, this.formPaciente.nombre, parseInt(this.formPaciente.documento));
+          this.empleado_aux = new Empleado(this.formPaciente.cargo, this.formPaciente.estamento, this.formPaciente.nombre, parseInt(this.formPaciente.documento));
           console.log(this.empleado_aux);
           
           this.pacienteService.crearHistorialMedico(this.empleado_aux, 2);
