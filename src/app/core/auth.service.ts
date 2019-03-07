@@ -14,7 +14,6 @@ import { switchMap, startWith, tap, filter } from 'rxjs/operators';
 
 interface User {
   uid: string;
-  email?: string | null;
   photoURL?: string;
   displayName?: string;
   sede?: string;
@@ -27,8 +26,7 @@ interface User {
 export class AuthService {
   user: Observable<User | null>;
   authState: any = null;
-  rol = '';
-  sede = '';
+
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -61,7 +59,7 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
-  private oAuthLogin(provider: any) {
+  private oAuthLogin(provider) {
     return this.afAuth.auth
       .signInWithPopup(provider)
       .then(credential => {
@@ -72,31 +70,42 @@ export class AuthService {
   }
 
   updateUser(user: User, data: any) { 
-    return this.afs.doc(`users/${user.uid}`).update(data)
+    return this.afs.doc(`users/${user.uid}`).update(data);
   }
 
 
-  private updateUserData(user: User) {
+  private updateUserData(uuser: User) {
     
-    
+    console.log(uuser);
+    let data : User;
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
-      `users/${user.uid}`
+      `users/${uuser.uid}`
     );
     userRef.valueChanges().subscribe((user)=>{
-       this.rol = user.rol;
-      this.sede = user.sede;
-      const data: User = {
-        uid: user.uid,
-        email: user.email || null,
-        displayName: user.displayName || 'nameless user',
-        photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
-        rol: this.rol || '',
-        sede: this.sede || ''
-      };
-      return userRef.set(data);
-    })
-    
-    
+      if (!(user === undefined)) {
+        console.log(user);
+        
+        data =  {
+          uid: user.uid,
+          displayName: user.displayName || 'nameless user',
+          photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+          rol: user.rol || '',
+          sede: user.sede || ''
+        };
+      } else {
+         data = {
+          uid: uuser.uid,
+          displayName: uuser.displayName || 'nameless user',
+          photoURL: uuser.photoURL || 'https://goo.gl/Fz9nrQ',
+          rol: uuser.rol || '',
+          sede: uuser.sede || ''
+        };
+        
+      }
+      return userRef.set(data, {merge: true});
+   });
+      
+
   }
 
 
