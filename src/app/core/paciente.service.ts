@@ -76,4 +76,8 @@ export class PacienteService {
   public getListaEstudiantes (){
     return this.firestore.collection('Paciente/Estudiante/Lista/').valueChanges();
   }
+
+  public getListaEmpleado (){
+    return this.firestore.collection('Paciente/Empleado/Lista/').valueChanges();
+  }
 }

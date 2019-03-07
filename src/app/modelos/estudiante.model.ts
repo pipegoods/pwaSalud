@@ -5,7 +5,7 @@ export class Estudiante extends Paciente{
     private codigo : number;
     private programa : string;
     private semestre : string;
-
+    
     constructor(codigo : number, programa : string, semestre : string, nombre : string, documento : number){
         super(new HistorialMedico, nombre, documento);
         this.codigo = codigo || 0;

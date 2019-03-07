@@ -30,7 +30,6 @@ export class AtenderComponent implements OnInit {
   private empleado_aux : any;
   private registro : any;
   private historialMedico_aux : any;
-  public registrosMedicos = [];
   public exits_paciente = false;
   private dataSource = {};
   displayedColumns: string[] = ['fecha', 'diagnostico','observaciones'];

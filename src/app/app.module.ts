@@ -29,7 +29,7 @@ import {BottomSheetExampleSheet} from './componentes/inventario/inventario.compo
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FlexLayoutModule } from '@angular/flex-layout';
 import { MenuPacienteComponent } from './componentes/menu-paciente/menu-paciente.component';
-import { ConsultarHistorialComponent } from './componentes/consultar-historial/consultar-historial.component';
+import { ConsultarHistorialComponent, DialogOverviewExampleDialog } from './componentes/consultar-historial/consultar-historial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,8 @@ import { ConsultarHistorialComponent } from './componentes/consultar-historial/c
     InventarioComponent,
     BottomSheetExampleSheet,
     MenuPacienteComponent,
-    ConsultarHistorialComponent
+    ConsultarHistorialComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,8 @@ import { ConsultarHistorialComponent } from './componentes/consultar-historial/c
     MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule,
     AngularFirestoreModule.enablePersistence(), MatTabsModule
   ],entryComponents: [
-    BottomSheetExampleSheet
+    BottomSheetExampleSheet,
+    DialogOverviewExampleDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
