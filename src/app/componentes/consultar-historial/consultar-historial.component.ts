@@ -26,9 +26,16 @@ export class ConsultarHistorialComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(private pacienteService : PacienteService,
     public dialog: MatDialog) {
+    
+    this.initFuncion();
+   }
+
+  initFuncion () {
     this.historialMedico_aux = new HistorialMedico();
-    this.listaEstudiantes = Array<Estudiante>;
-    this.listaEmpleados = Array<Empleo>;
+    this.listaEstudiantes = Array<Estudiante>();
+    this.listaEmpleados = Array<Empleo>();
+     this.in = 0;
+    this.in2 = 0;
     this.pacienteService.getListaEstudiantes().subscribe((d)=>{
       console.log(d);
       
@@ -85,9 +92,7 @@ export class ConsultarHistorialComponent implements OnInit {
       this.dataSourceEmpleado.paginator = this.paginator;
       this.dataSourceEmpleado.sort = this.sort;
     });
-    
-   }
-  
+  }
   ngOnInit() {
     
   }
@@ -117,12 +122,61 @@ export class ConsultarHistorialComponent implements OnInit {
     });
   }
 
-  applyFilter(filterValue: string) {
+  applyFilterEstudiante(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  applyFilterEmpleado(filterValue: string) {
+    this.dataSourceEmpleado.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourceEmpleado.paginator) {
+      this.dataSourceEmpleado.paginator.firstPage();
+    }
+  }
+
+  desactivarPaciente(documento, tipo){
+    let aux : any;
+    if (tipo == 1) {
+      aux = this.listaEstudiantes.find(function(es) {
+        return es.documento === documento;
+      });
+    } else {
+      aux = this.listaEmpleados.find(function(es) {
+        return es.documento === documento;
+      });
+    }
+    
+    this.pacienteService.eliminarPacienteLista(documento, tipo).then((d)=>{
+      console.log(d);
+      this.initFuncion();
+    }).catch((r)=>{
+      console.log(r);
+      this.initFuncion();
+    });
+
+    this.pacienteService.agregarPacienteDesactivado(aux,tipo).then((d)=>{
+      console.log(d);
+    }).catch((r)=>{
+      console.log(r);
+    });
+
+    this.pacienteService.agregarRegistroMedicoDesactivado(aux, tipo).then((d)=>{
+      console.log(d);
+    }).catch((r)=>{
+      console.log(r);
+    });
+
+    this.pacienteService.consultarHistorialMedico(aux.getDocumento, tipo).subscribe((dato) => {
+      dato.forEach((d : {id})=>{
+        console.log(d);
+        
+        this.pacienteService.eliminarHistorialPaciente(aux.getDocumento, tipo, d.id);
+      });
+    })
   }
 
 }

@@ -97,7 +97,7 @@
                     </div>
                   
                   </div>
-                  <div *ngIf="paciente_exist == 2 && formPaciente.documento != null">
+                  <div *ngIf="paciente_exist == 2 && formPaciente.documento != ''">
                       <h6>El paciente no existe: </h6>
                       <button mat-raised-button color="primary" (click)="crearHistorialMedico()">Crear historial medico</button>
                   </div>

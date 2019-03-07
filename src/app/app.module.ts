@@ -13,7 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule, MatNativeDateModule, MatTabsModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule, MatNativeDateModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 import { AtenderComponent } from './componentes/atender/atender.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -52,7 +52,7 @@ import { ConsultarHistorialComponent, DialogOverviewExampleDialog } from './comp
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
     MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule,
-    AngularFirestoreModule.enablePersistence(), MatTabsModule
+    AngularFirestoreModule.enablePersistence(), MatTabsModule,MatTooltipModule
   ],entryComponents: [
     BottomSheetExampleSheet,
     DialogOverviewExampleDialog

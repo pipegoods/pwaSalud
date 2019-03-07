@@ -74,7 +74,7 @@ export class AtenderComponent implements OnInit {
             this.paciente_exist = 2;
             this.clearAll();
           }
-         
+          this.paciente_exist == 1;
       });
       } else {
         this.pacienteService.consultarDatosPersonales(this.formPaciente.documento.toString(), this.formPaciente.tipoPaciente).subscribe((datos_personales)=>{
@@ -100,6 +100,7 @@ export class AtenderComponent implements OnInit {
             console.log( this.empleado_aux.getHistorial.getRegistrosMedicos);
             
             this.dataSource = this.empleado_aux.getHistorial.getRegistrosMedicos;
+            
           });
           } else {
             this.paciente_exist = 2;
@@ -107,6 +108,7 @@ export class AtenderComponent implements OnInit {
           }
           
       });
+      this.paciente_exist == 1;
       }
     } else {
       this.clearAll();
