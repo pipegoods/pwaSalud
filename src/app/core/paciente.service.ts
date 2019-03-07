@@ -58,7 +58,8 @@ export class PacienteService {
         codigo: paciente.getCodigo,
         nombre : paciente.getNombre,
         programa: paciente.getPrograma,
-        semestre: paciente.getSemestre
+        semestre: paciente.getSemestre,
+        documento: paciente.getDocumento
       });
     } else {
       console.log(paciente);
@@ -66,8 +67,13 @@ export class PacienteService {
       return this.firestore.collection('Paciente/Empleado/Lista').doc(paciente.getDocumento.toString()).set({
         cargo: paciente.getCargo,
         nombre : paciente.getNombre,
-        estamento: paciente.getEstamento
+        estamento: paciente.getEstamento,
+        documento: paciente.getDocumento
       });
     }
+  }
+
+  public getListaEstudiantes (){
+    return this.firestore.collection('Paciente/Estudiante/Lista/').valueChanges();
   }
 }

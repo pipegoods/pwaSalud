@@ -13,7 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule, MatNativeDateModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSelectModule, MatNativeDateModule, MatTabsModule } from '@angular/material';
 import { AtenderComponent } from './componentes/atender/atender.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -28,6 +28,8 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {BottomSheetExampleSheet} from './componentes/inventario/inventario.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FlexLayoutModule } from '@angular/flex-layout';
+import { MenuPacienteComponent } from './componentes/menu-paciente/menu-paciente.component';
+import { ConsultarHistorialComponent } from './componentes/consultar-historial/consultar-historial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     MenuPrincipalComponent,
     AtenderComponent,
     InventarioComponent,
-    BottomSheetExampleSheet
+    BottomSheetExampleSheet,
+    MenuPacienteComponent,
+    ConsultarHistorialComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
     MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule,
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(), MatTabsModule
   ],entryComponents: [
     BottomSheetExampleSheet
   ],

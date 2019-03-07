@@ -9,10 +9,10 @@
       <a mat-list-item routerLink="/home">Home</a>
       
       <div *ngIf="(authS.user | async)">
-        <a mat-list-item routerLink="/atender">Atender</a>
+        <a mat-list-item routerLink="/paciente">Paciente  &nbsp; <i class="fas fa-user"></i></a>
       </div>
       <div *ngIf="(authS.user | async)">
-        <a mat-list-item routerLink="/inventario">inventario</a>
+        <a mat-list-item routerLink="/inventario">Inventario  &nbsp; <i class="fas fa-truck-loading"></i></a>
       </div>
 
     </mat-nav-list>
