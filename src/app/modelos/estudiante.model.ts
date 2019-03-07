@@ -1,10 +1,18 @@
 import { Paciente } from "./paciente.model";
+import { HistorialMedico } from "./historial-medico.model";
 
 export class Estudiante extends Paciente{
     private codigo : number;
     private programa : string;
     private semestre : string;
-    
+
+    constructor(codigo : number, programa : string, semestre : string, nombre : string, documento : number){
+        super(new HistorialMedico, nombre, documento);
+        this.codigo = codigo || 0;
+        this.programa = programa || '';
+        this.semestre = semestre || '';
+    }
+
     public get getCodigo() : number {
         return this.codigo;
     }

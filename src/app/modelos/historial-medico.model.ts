@@ -1,14 +1,20 @@
 import { RegistroMedico } from "./registro-medico.model";
 
 export class HistorialMedico {
-    private registrosMedicos : RegistroMedico [];
+    private registrosMedicos = Array<RegistroMedico>();
     
-    public get getRegistrosMedicos() : RegistroMedico [] {
+    constructor () {
+
+    }
+    public get getRegistrosMedicos() : Array<RegistroMedico> {
         return this.registrosMedicos;
     }
     
-    public set setRegistrosMedicos(newRegistrosMedicos : RegistroMedico []) {
+    public set setRegistrosMedicos(newRegistrosMedicos : Array<RegistroMedico> ) {
         this.registrosMedicos = newRegistrosMedicos;
     }
     
+    public addRegistroMedico (newRegistro : RegistroMedico) {
+        this.registrosMedicos.push(newRegistro);
+    }
 }

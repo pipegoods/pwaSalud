@@ -2,7 +2,11 @@ export class Persona {
     private documento : number;
     private nombre : string;
 
-    
+    constructor (documento : number, nombre : string){
+        this.documento = documento;
+        this.nombre = nombre;
+    }
+
     public get getDocumento() : number {
         return this.documento;
     }

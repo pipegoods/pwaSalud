@@ -6,16 +6,45 @@
   </mat-toolbar>  
   <div class="container">
       
-        <ng-container *ngIf="exits_paciente; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-container *ngIf="estudiante_aux; then thenTemplate;"></ng-container>
         <ng-template #thenTemplate>
-            <mat-card>
-                El usuario existe
+            <mat-card [style.backgroundColor]="'yellow'">
+                Paciente tiene historial medico <i class="fa fa-search"></i> &nbsp;
+                <button mat-raised-button color="primary" (click)="openDialogHistorialMedico()">Ver registros medicos</button>
             </mat-card>
+            
         </ng-template>
-        <ng-template #elseTemplate>
-            <mat-card>
-                El usuario no existe
-            </mat-card>
+        <ng-container *ngIf="showHistorial; then historialTemplate;">
+
+        </ng-container>
+        <ng-template #historialTemplate>
+            <h5>Paciente: {{estudiante_aux.getNombre}}</h5>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z12">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                  <td mat-cell *matCellDef="let element"> {{element.getFecha.toDate()  | date:'medium'}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="observaciones">
+                  <th mat-header-cell *matHeaderCellDef> Observaciones </th>
+                  <td mat-cell *matCellDef="let element"> {{element.getObservaciones}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="diagnostico">
+                  <th mat-header-cell *matHeaderCellDef> Diagnostico </th>
+                  <td mat-cell *matCellDef="let element"> {{element.getDiagnostico}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
         </ng-template>
         
 
@@ -47,24 +76,22 @@
                             <input matInput [(ngModel)]="formPaciente.semestre" placeholder="Semestre">
                         </mat-form-field>
                         <mat-form-field>
-                            <mat-select [(ngModel)]="formPaciente.programa" placeholder="Programa">
-                              <mat-option value="1">Rellenar con </mat-option>
-                              <mat-option value="2">Programas   </mat-option>
-                            </mat-select>
+                                <input matInput [(ngModel)]="formPaciente.programa" placeholder="Programa">
                           </mat-form-field>
                     </div>
                     <div class="example-container" *ngIf="formPaciente.tipoPaciente == '2'"> 
-                        <mat-form-field>
-                            <mat-select [(ngModel)]="formPaciente.estamento" placeholder="Estamento">
-                              <mat-option value="1">Administrativo</mat-option>
-                              <mat-option value="2">Docente</mat-option>
-                            </mat-select>
+                        <mat-form-field> 
+                                <input matInput [(ngModel)]="formPaciente.estamento" placeholder="Estamento">
                           </mat-form-field>
                         <mat-form-field>
                             <input matInput [(ngModel)]="formPaciente.cargo" placeholder="Cargo">
                         </mat-form-field>
                     </div>
                   
+                  </div>
+                  <div *ngIf="paciente_exist == 2 && formPaciente.documento != null">
+                      <h6>El paciente no existe: </h6>
+                      <button mat-raised-button color="primary" (click)="crearHistorialMedico()">Crear historial medico</button>
                   </div>
             </mat-card-content>
         </mat-card>

@@ -46,7 +46,8 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-    MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule
+    MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule,
+    AngularFirestoreModule.enablePersistence()
   ],entryComponents: [
     BottomSheetExampleSheet
   ],
