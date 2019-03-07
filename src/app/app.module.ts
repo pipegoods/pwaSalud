@@ -28,7 +28,6 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {BottomSheetExampleSheet} from './componentes/inventario/inventario.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FlexLayoutModule } from '@angular/flex-layout';
-import { MenuPacienteComponent } from './componentes/menu-paciente/menu-paciente.component';
 import { ConsultarHistorialComponent, DialogOverviewExampleDialog } from './componentes/consultar-historial/consultar-historial.component';
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { ConsultarHistorialComponent, DialogOverviewExampleDialog } from './comp
     AtenderComponent,
     InventarioComponent,
     BottomSheetExampleSheet,
-    MenuPacienteComponent,
     ConsultarHistorialComponent,
     DialogOverviewExampleDialog
   ],

@@ -4,14 +4,16 @@ import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { AuthGuard } from './core/auth.guard';
 import { InventarioComponent } from './componentes/inventario/inventario.component';
-import { MenuPacienteComponent } from './componentes/menu-paciente/menu-paciente.component';
+import { AtenderComponent } from './componentes/atender/atender.component';
+import { ConsultarHistorialComponent } from './componentes/consultar-historial/consultar-historial.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'paciente', component: MenuPacienteComponent, canActivate: [AuthGuard]},
+  {path: 'atender', component: AtenderComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'inventario', component: InventarioComponent, canActivate: [AuthGuard]}
+  {path: 'inventario', component: InventarioComponent, canActivate: [AuthGuard]},
+  {path: 'consultarPaciente', component: ConsultarHistorialComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -7,14 +7,16 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/login">Login</a>
       <a mat-list-item routerLink="/home">Home</a>
-      
+      <mat-divider></mat-divider>
       <div *ngIf="(authS.user | async)">
-        <a mat-list-item routerLink="/paciente">Paciente  &nbsp; <i class="fas fa-user"></i></a>
+        <a mat-list-item routerLink="/atender">Atender paciente  &nbsp; <i class="fas fa-user"></i></a>
+        <a mat-list-item routerLink="/consultarPaciente">Consultar paciente  &nbsp; <i class="fas fa-search"></i></a>
       </div>
+      <mat-divider></mat-divider>
       <div *ngIf="(authS.user | async)">
         <a mat-list-item routerLink="/inventario">Inventario  &nbsp; <i class="fas fa-truck-loading"></i></a>
       </div>
-
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
