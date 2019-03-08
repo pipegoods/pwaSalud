@@ -25,22 +25,20 @@ export class HomeComponent implements OnInit {
 
   getSede(sede) {
     switch (sede) {
-      case 'piedra-Bolivar':
+      case 'PiedraBolivar':
         return 'Pierdra de Bolivar';
         break;
-      case 'san-Pablo':
+      case 'SanPablo':
         return 'San pablo';
         break;
-      case 'san-Agustin':
+      case 'SanAgustin':
         return 'San agustin';
         break;
-      case 'zaragocilla':
+      case 'Zaragocilla':
         return 'Zaragocilla';
         break;
       default:
         return 'Sede invalida'
         break;
     }
-    
-  }
 }
