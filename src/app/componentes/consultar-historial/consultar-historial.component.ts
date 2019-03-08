@@ -143,7 +143,9 @@ export class ConsultarHistorialComponent implements OnInit {
   }
 
   desactivarPaciente(documento, tipo){
-    let aux : any;
+    var r = confirm("Estas seguro que deseas desactivar este paciente?");
+    if (r == true) {
+      let aux : any;
     if (tipo == 1) {
       aux = this.listaEstudiantes.find(function(es) {
         return es.documento === documento;
@@ -180,7 +182,8 @@ export class ConsultarHistorialComponent implements OnInit {
         
         this.pacienteService.eliminarHistorialPaciente(aux.getDocumento, tipo, d.id);
       });
-    })
+    });
+    }
   }
 
 }

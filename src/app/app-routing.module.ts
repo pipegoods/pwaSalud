@@ -8,8 +8,8 @@ import { AtenderComponent } from './componentes/atender/atender.component';
 import { ConsultarHistorialComponent } from './componentes/consultar-historial/consultar-historial.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: LoginComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'atender', component: AtenderComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'inventario', component: InventarioComponent, canActivate: [AuthGuard]},

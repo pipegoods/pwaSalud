@@ -6,7 +6,9 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/login">Login</a>
-      <a mat-list-item routerLink="/home">Home</a>
+      <div *ngIf="(authS.user | async)">
+        <a mat-list-item routerLink="/home">Home</a>
+      </div>
       <mat-divider></mat-divider>
       <div *ngIf="(authS.user | async)">
         <a mat-list-item routerLink="/atender">Atender paciente  &nbsp; <i class="fas fa-user"></i></a>

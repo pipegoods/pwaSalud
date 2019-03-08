@@ -20,7 +20,7 @@ export class Medicamento {
     }
     
     public get getPresentacion() : string {
-        return this.getPresentacion;
+        return this.presentacion;
     }
     
     public get getVencimiento() : Date {
@@ -42,7 +42,6 @@ export class Medicamento {
     public set setVencimiento(newVencimiento : Date) {
         this.vencimiento = newVencimiento;
     }
-    
     
 
     

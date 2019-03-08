@@ -28,7 +28,7 @@ export class Enfermeria {
     }
     
     public get getSede() : string {
-        return this.getSede;
+        return this.sede;
     }
     
     public set setSede(newSede : string) {

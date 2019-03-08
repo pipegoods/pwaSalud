@@ -64,6 +64,7 @@ export class AuthService {
       .signInWithPopup(provider)
       .then(credential => {
        console.log('Bienvenido a pwaSalud');
+       
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));

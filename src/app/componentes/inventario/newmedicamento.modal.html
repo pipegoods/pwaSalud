@@ -1,25 +1,32 @@
 <div class="example-container">
     <h4>Añadir medicamentos </h4>
     <mat-form-field>
-      <input matInput placeholder="Nombre" value="{{data.datos.Nombre}}">
+      <input matInput placeholder="Nombre" [disabled]="data.tipo == 'editar'" [(ngModel)]="data.datos.getNombre">
     </mat-form-field>
     
     <mat-form-field>
-        <input matInput placeholder="Presentacion" value="{{data.datos.pres}}">
+        <input matInput placeholder="Presentacion" [disabled]="data.tipo == 'editar'" [(ngModel)]="data.datos.getPresentacion">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput type="number" min="0" placeholder="Cantidad" value="{{data.datos.cant}}">
+        <input matInput type="number" min="0" placeholder="Cantidad" [(ngModel)]="data.datos.getCantidad">
     </mat-form-field>
 
     <mat-form-field class="demo-full-width">
-        <input matInput [matDatepicker]="myDatepicker" placeholder="Fecha de vencimiento" value="{{data.datos.fven |date: 'MM/dd/yyyy'}}">
+        <input [disabled]="data.tipo == 'editar'" matInput [min]="minDate" [matDatepicker]="myDatepicker" placeholder="Fecha de vencimiento" [(ngModel)]="data.datos.getVencimiento">
         <mat-datepicker-toggle matSuffix touchUi="true" [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker></mat-datepicker>
     </mat-form-field>
 
     <div>
-      <button mat-button color="primary">Guardar</button>
-      <button mat-button color="warn">Cancelar</button>
+      <div *ngIf="data.tipo == 'nuevo'">
+          <button mat-button color="primary" [disabled]="data.datos.getVencimiento == '' || data.datos.getPresentacion == '' || data.datos.getNombre == '' || data.datos.getCantidad == ''" (click)="crearMedicamento()">Guardar</button>
+          <button mat-button color="warn">Cancelar</button>
+      </div>
+      <div *ngIf="data.tipo == 'editar'">
+          <button mat-button color="primary" (click)="modificarCantidadMedicamento()">Modificar</button>
+          <button mat-button color="warn">Cancelar</button>
+      </div>
+      
     </div>
   </div>
