@@ -63,7 +63,6 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithPopup(provider)
       .then(credential => {
-       console.log('Bienvenido a pwaSalud');
        
         return this.updateUserData(credential.user);
       })
@@ -77,14 +76,12 @@ export class AuthService {
 
   private updateUserData(uuser: User) {
     
-    console.log(uuser);
     let data : User;
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `PersonalMedico/${uuser.uid}`
     );
     userRef.valueChanges().subscribe((user)=>{
       if (!(user === undefined)) {
-        console.log(user);
         
         data =  {
           uid: user.uid,

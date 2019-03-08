@@ -24,10 +24,10 @@ export class AtenderComponent implements OnInit {
     diagnostico: '',
     observaciones: ''
   };
-  private showHistorial = false;
-  private paciente_exist = 0;
-  private estudiante_aux : any;
-  private empleado_aux : any;
+  public showHistorial = false;
+  public paciente_exist = 0;
+  public estudiante_aux : any;
+  public empleado_aux : any;
   private registro : any;
   private historialMedico_aux : any;
   public exits_paciente = false;
@@ -45,7 +45,7 @@ export class AtenderComponent implements OnInit {
       if (this.formPaciente.tipoPaciente == '1') {
         this.pacienteService.consultarDatosPersonales(this.formPaciente.documento.toString(), this.formPaciente.tipoPaciente).subscribe((datos_personales)=>{
           if (datos_personales.exists) {
-            console.log(datos_personales.data());
+            (datos_personales.data());
 
             this.paciente_exist = 1;
             
@@ -59,14 +59,14 @@ export class AtenderComponent implements OnInit {
             this.formPaciente.semestre = this.estudiante_aux.getSemestre;
             this.formPaciente.programa = this.estudiante_aux.getPrograma;
             this.pacienteService.consultarHistorialMedico(this.formPaciente.documento.toString(), this.formPaciente.tipoPaciente).subscribe((datos) =>{
-              console.log(datos);
+              (datos);
               datos.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
-                console.log(d);
+                (d);
                 this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
                 this.historialMedico_aux.agregarRegistroMedico(this.registro);
               });
               this.estudiante_aux.setHistorial = this.historialMedico_aux;
-              console.log( this.estudiante_aux.getHistorial.getRegistrosMedicos);
+              ( this.estudiante_aux.getHistorial.getRegistrosMedicos);
               
               this.dataSource = this.estudiante_aux.getHistorial.getRegistrosMedicos;
             });
@@ -79,25 +79,25 @@ export class AtenderComponent implements OnInit {
       } else {
         this.pacienteService.consultarDatosPersonales(this.formPaciente.documento.toString(), this.formPaciente.tipoPaciente).subscribe((datos_personales)=>{
           if (datos_personales.exists) {
-          console.log(datos_personales.data());
+          (datos_personales.data());
           this.paciente_exist = 1;
           this.empleado_aux = new Empleado(datos_personales.data().cargo,
           datos_personales.data().estamento,
           datos_personales.data().nombre,
           parseInt(datos_personales.id));
-          console.log(this.empleado_aux);
+          (this.empleado_aux);
           this.formPaciente.nombre = this.empleado_aux.getNombre;
           this.formPaciente.estamento = this.empleado_aux.getCargo;
           this.formPaciente.cargo = this.empleado_aux.getEstamento;
           this.pacienteService.consultarHistorialMedico(this.formPaciente.documento.toString(), this.formPaciente.tipoPaciente).subscribe((datos) =>{
-            console.log(datos);
+            (datos);
             datos.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
-              console.log(d);
+              (d);
               this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
               this.historialMedico_aux.agregarRegistroMedico(this.registro);
             });
             this.empleado_aux.setHistorial = this.historialMedico_aux;
-            console.log( this.empleado_aux.getHistorial.getRegistrosMedicos);
+            ( this.empleado_aux.getHistorial.getRegistrosMedicos);
             
             this.dataSource = this.empleado_aux.getHistorial.getRegistrosMedicos;
             
@@ -117,7 +117,7 @@ export class AtenderComponent implements OnInit {
   }
 
   guardar () {
-    console.log(this.formPaciente.documento);
+    (this.formPaciente.documento);
     this.registro = new RegistroMedico(this.formPaciente.diagnostico, new Date(), this.formPaciente.observaciones);
     
     if (this.estudiante_aux) {
@@ -139,27 +139,27 @@ export class AtenderComponent implements OnInit {
     if (this.formPaciente.documento != '' && this.formPaciente.nombre != '') {
       if (this.formPaciente.tipoPaciente == '1') {
         if (this.formPaciente.codigo != '' && this.formPaciente.programa != '' && this.formPaciente.semestre != '') {
-          console.log("Ya puedo crear");
+          ("Ya puedo crear");
           this.estudiante_aux = new Estudiante(parseInt(this.formPaciente.codigo), 
             this.formPaciente.programa, this.formPaciente.semestre, this.formPaciente.nombre, parseInt(this.formPaciente.documento));
 
             this.pacienteService.crearHistorialMedico(this.estudiante_aux, 1);
           
         } else {
-          console.log("Faltan datos");
+          ("Faltan datos");
         }
       } else {
         if (this.formPaciente.estamento != '' && this.formPaciente.cargo != '') {
-          console.log("Ya puedo crear empleado");
-          console.log(this.formPaciente.estamento);
+          ("Ya puedo crear empleado");
+          (this.formPaciente.estamento);
           
           this.empleado_aux = new Empleado(this.formPaciente.cargo, this.formPaciente.estamento, this.formPaciente.nombre, parseInt(this.formPaciente.documento));
-          console.log(this.empleado_aux);
+          (this.empleado_aux);
           
           this.pacienteService.crearHistorialMedico(this.empleado_aux, 2);
           
         } else {
-          console.log("Faltan datos");
+          ("Faltan datos");
         }
       }
     } else {

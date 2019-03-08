@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     {value: 'SanAgustin', viewValue: 'San agustin'},
     {value: 'Zaragocilla', viewValue: 'Zaragocilla'}
   ];
-  constructor(private authS: AuthService,
+  constructor(public authS: AuthService,
     private router: Router,
     public fb: FormBuilder) { }
 
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
   private afterSignIn() {
     
     this.authS.currentUser.subscribe((user) => {
-      console.log(user);
       
     })
  

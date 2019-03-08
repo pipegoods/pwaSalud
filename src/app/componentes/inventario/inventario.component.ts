@@ -19,7 +19,7 @@ export class InventarioComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private bottomSheet: MatBottomSheet,
-    private aauth: AuthService,
+    public aauth: AuthService,
     private inventarioService : InventarioService) {
       
       
@@ -33,9 +33,8 @@ export class InventarioComponent implements OnInit {
         this.enfermeria_aux = new Enfermeria(new InventarioMedicamento([]), [], d.sede);
           this.inventarioService.getMedicamentosInventario(d.sede).subscribe((med)=>{
 
-            console.log(med);
+            
             med.forEach((m : {cantidad, nombre, presentacion, vencimiento}) => {
-              console.log(m.presentacion);
               
               this.enfermeria_aux.getInventarioMedicamento.agregarMedicamento(
                 new Medicamento(m.cantidad, m.nombre, m.presentacion, m.vencimiento)
@@ -43,7 +42,6 @@ export class InventarioComponent implements OnInit {
             });
           });
           this.dataSource = new MatTableDataSource(this.enfermeria_aux.getInventarioMedicamento.getMedicamentos);
-          console.log(this.dataSource);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
        });
@@ -74,13 +72,10 @@ export class InventarioComponent implements OnInit {
         tipo : 'nuevo'
        },
     }).afterDismissed().subscribe((datos : {getCantidad, getNombre, getPresentacion, getVencimiento}) => {
-      console.log(datos);
       if (!(datos===undefined)) {
-        console.log(datos);
         
         this.enfermeria_aux.getInventarioMedicamento.agregarMedicamento(new Medicamento(datos.getCantidad, datos.getNombre, datos.getPresentacion, datos.getVencimiento));
         this.inventarioService.agregarMedicamento(this.enfermeria_aux.getSede, new Medicamento(datos.getCantidad, datos.getNombre, datos.getPresentacion, datos.getVencimiento)).then((f)=>{
-          console.log(f);
           this.ngOnInit();
         });
       } else {
@@ -94,26 +89,20 @@ export class InventarioComponent implements OnInit {
     var datos =  this.enfermeria_aux.getInventarioMedicamento.getMedicamentos.find(function(element) {
       return element.getNombre == id;
     });
-    console.log(datos);
 
     this.bottomSheet.open(BottomSheetExampleSheet, {
       data: { 
         datos, tipo: 'editar'
        },
     }).afterDismissed().subscribe((datos) => {
-      console.log(datos);
       if (!(datos===undefined)) {
-        console.log(datos);
         // this.enfermeria_aux.getInventarioMedicamento.agregarMedicamento(datos);
         // this.inventarioService.agregarMedicamento(this.enfermeria_aux.getSede, new Medicamento(datos.getCantidad, datos.getNombre, datos.getPresentacion, datos.getVencimiento)).then((f)=>{
-        //   console.log(f);
         //   this.ngOnInit();
         // });
         // this.inventarioService.modificarMedicamento(this.enfermeria_aux.getSede, datos).subscribe((dat)=>{
-        //   console.log(dat.docs[0].id);
         //   id = dat.docs[0].id;
         //   this.inventarioService.setMedicamento(this.enfermeria_aux.getSede, datos, id).then((d)=>{
-        //     console.log(d);
             
         //   });
         // });
@@ -122,7 +111,6 @@ export class InventarioComponent implements OnInit {
         
       }
     });
-    console.log(id);
 
   }
 
@@ -155,10 +143,8 @@ export class InventarioComponent implements OnInit {
       });
       let id : string;
       this.inventarioService.modificarMedicamento(this.enfermeria_aux.getSede, nombre).subscribe((dat)=>{
-          console.log(dat.docs[0].id);
           id = dat.docs[0].id;
           this.inventarioService.retirarMedicamento(this.enfermeria_aux.getSede, id).then((d)=>{
-            console.log(d);   
             this.enfermeria_aux.getInventarioMedicamento.retirarMedicamento(datos); 
             this.ngOnInit();  
           });
@@ -179,7 +165,6 @@ export class BottomSheetExampleSheet {
   constructor(private bottomSheetRef: MatBottomSheetRef<BottomSheetExampleSheet>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private inventarioService : InventarioService) {
-      console.log(data.datos);
     }
   
     

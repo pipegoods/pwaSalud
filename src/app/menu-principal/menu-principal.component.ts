@@ -16,10 +16,15 @@ export class MenuPrincipalComponent {
       map(result => result.matches)
     );
   public bandera = false;
+  public banderaL = true;
   constructor(private breakpointObserver: BreakpointObserver,
-    private authS: AuthService) {
+    public authS: AuthService) {
       this.authS.user.subscribe((d)=>{
-        console.log(d);
+        if (d.rol && d.sede) {
+          this.banderaL = false;
+        }else{
+          this.banderaL = true;
+        }
         if (d.rol == 'enfermera-jefe') {
           this.bandera = true;
         } else {

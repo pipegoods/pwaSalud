@@ -93,7 +93,7 @@
     <button type="submit" [disabled]="!detailForm.valid" mat-raised-button color="primary">Registrarse</button>
     
   </form>
-  <p *ngIf="user.sede && user.rol">
-    You have completed the form!
-</p>
+  <h1 *ngIf="user.sede && user.rol">
+    ¡Ya estas registrado en una sede &nbsp; <i class="fas fa-smile-beam"></i>!
+  </h1>
 </ng-container>

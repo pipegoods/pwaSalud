@@ -29,6 +29,7 @@ import {BottomSheetExampleSheet} from './componentes/inventario/inventario.compo
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FlexLayoutModule } from '@angular/flex-layout';
 import { ConsultarHistorialComponent, DialogOverviewExampleDialog } from './componentes/consultar-historial/consultar-historial.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,7 @@ import { ConsultarHistorialComponent, DialogOverviewExampleDialog } from './comp
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, AngularFirestoreModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
     MatInputModule,FlexLayoutModule, FormsModule, MatSelectModule, MatCardModule, MatGridListModule,MatRadioModule,MatTableModule, MatPaginatorModule, MatBottomSheetModule,
-    AngularFirestoreModule.enablePersistence(), MatTabsModule,MatTooltipModule
+    AngularFirestoreModule.enablePersistence(), MatTabsModule,MatTooltipModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],entryComponents: [
     BottomSheetExampleSheet,
     DialogOverviewExampleDialog

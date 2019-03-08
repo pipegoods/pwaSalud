@@ -28,7 +28,6 @@ export class InventarioService {
   }
 
   public setMedicamento (sede, medicina : Medicamento, id){
-    console.log(id);
     
     return this.firestore.collection('/Enfermeria/' + sede + '/InventarioMedicamento/').doc(id).set(
       {

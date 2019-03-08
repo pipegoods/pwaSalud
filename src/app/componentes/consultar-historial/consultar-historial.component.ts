@@ -41,7 +41,7 @@ export class ConsultarHistorialComponent implements OnInit {
     this.in = 0;
     this.in2 = 0;
     this.pacienteService.getListaEstudiantes().subscribe((d)=>{
-      console.log(d);
+      (d);
       
       d.forEach((dato : {codigo, programa, semestre, nombre, documento}) => {
         this.listaEstudiantes.push(new Estudiante (
@@ -49,28 +49,28 @@ export class ConsultarHistorialComponent implements OnInit {
         ));
         this.pacienteService.consultarHistorialMedico(dato.documento, 1).subscribe((resultado)=>{
           this.historialMedico_aux = new HistorialMedico();
-          console.log(resultado);
+          (resultado);
           resultado.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
-            console.log(d);
+            (d);
             this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
             this.historialMedico_aux.agregarRegistroMedico(this.registro);
           });
           this.listaEstudiantes[this.in].setHistorial = this.historialMedico_aux;
-          console.log(this.listaEstudiantes[this.in]);
+          (this.listaEstudiantes[this.in]);
           
           this.in += 1;
         });
         
       });
       this.dataSource = new MatTableDataSource(this.listaEstudiantes);
-      console.log(this.dataSource);
+      (this.dataSource);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
 
 
     this.pacienteService.getListaEmpleado().subscribe((d)=>{
-      console.log(d);
+      (d);
       
       d.forEach((dato : {cargo, estamento, nombre, documento}) => {
         this.listaEmpleados.push(new Empleado (
@@ -78,21 +78,21 @@ export class ConsultarHistorialComponent implements OnInit {
         ));
         this.pacienteService.consultarHistorialMedico(dato.documento, 2).subscribe((resultado)=>{
           this.historialMedico_aux = new HistorialMedico();
-          console.log(resultado);
+          (resultado);
           resultado.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
-            console.log(d);
+            (d);
             this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
             this.historialMedico_aux.agregarRegistroMedico(this.registro);
           });
           this.listaEmpleados[this.in2].setHistorial = this.historialMedico_aux;
-          console.log(this.listaEmpleados[this.in2]);
+          (this.listaEmpleados[this.in2]);
           
           this.in2 += 1;
         });
         
       });
       this.dataSourceEmpleado = new MatTableDataSource(this.listaEmpleados);
-      console.log(this.dataSourceEmpleado);
+      (this.dataSourceEmpleado);
       this.dataSourceEmpleado.paginator = this.paginator;
       this.dataSourceEmpleado.sort = this.sort;
     });
@@ -121,8 +121,8 @@ export class ConsultarHistorialComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
+      ('The dialog was closed');
+      (result);
     });
   }
 
@@ -157,28 +157,28 @@ export class ConsultarHistorialComponent implements OnInit {
     }
     
     this.pacienteService.eliminarPacienteLista(documento, tipo).then((d)=>{
-      console.log(d);
+      (d);
       this.initFuncion();
     }).catch((r)=>{
-      console.log(r);
+      (r);
       this.initFuncion();
     });
 
     this.pacienteService.agregarPacienteDesactivado(aux,tipo).then((d)=>{
-      console.log(d);
+      (d);
     }).catch((r)=>{
-      console.log(r);
+      (r);
     });
 
     this.pacienteService.agregarRegistroMedicoDesactivado(aux, tipo).then((d)=>{
-      console.log(d);
+      (d);
     }).catch((r)=>{
-      console.log(r);
+      (r);
     });
 
     this.pacienteService.consultarHistorialMedico(aux.getDocumento, tipo).subscribe((dato) => {
       dato.forEach((d : {id})=>{
-        console.log(d);
+        (d);
         
         this.pacienteService.eliminarHistorialPaciente(aux.getDocumento, tipo, d.id);
       });
@@ -196,7 +196,7 @@ export class ConsultarHistorialComponent implements OnInit {
 export class DialogOverviewExampleDialog {
   dataSource: MatTableDataSource<RegistroMedico>;
   displayedColumns: string[] = ['fecha', 'diagnostico','observaciones'];
-  private showTable = false;
+  public showTable = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
@@ -206,7 +206,7 @@ export class DialogOverviewExampleDialog {
         this.showTable = true; 
       }
       this.dataSource = new MatTableDataSource(data.historial.getRegistrosMedicos);
-      console.log(this.dataSource);
+      (this.dataSource);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
