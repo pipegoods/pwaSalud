@@ -36,7 +36,7 @@ export class AuthService {
       switchMap(user => {
         if (user) {
           this.authState = user;
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc<User>(`PersonalMedico/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
@@ -51,7 +51,7 @@ export class AuthService {
 
   // Returns current user data
   get currentUser(): any {
-    return this.afs.doc<User>(`users/${this.authState.uid}`).valueChanges();
+    return this.afs.doc<User>(`PersonalMedico/${this.authState.uid}`).valueChanges();
   }
 
   googleLogin() {
@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   updateUser(user: User, data: any) { 
-    return this.afs.doc(`users/${user.uid}`).update(data);
+    return this.afs.doc(`PersonalMedico/${user.uid}`).update(data);
   }
 
 
@@ -79,7 +79,7 @@ export class AuthService {
     console.log(uuser);
     let data : User;
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
-      `users/${uuser.uid}`
+      `PersonalMedico/${uuser.uid}`
     );
     userRef.valueChanges().subscribe((user)=>{
       if (!(user === undefined)) {
@@ -115,6 +115,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
+    this.router.navigateByUrl("https://mail.google.com/mail/u/0/?logout&hl=en");
       this.router.navigate(['/']);
     });
   }

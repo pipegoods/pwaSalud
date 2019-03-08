@@ -14,7 +14,16 @@ export class HistorialMedico {
         this.registrosMedicos = newRegistrosMedicos;
     }
     
-    public addRegistroMedico (newRegistro : RegistroMedico) {
+    public agregarRegistroMedico (newRegistro : RegistroMedico) {
         this.registrosMedicos.push(newRegistro);
     }
+
+    public consultarRegistro (index) : RegistroMedico {
+        return this.registrosMedicos[index];
+    }
+
+    public modificarRegistroMedico (index, registroMedico) {
+        this.registrosMedicos[index] = registroMedico;
+    }
+
 }

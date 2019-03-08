@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
     {value: 'odontologo', viewValue: 'Odontologo'}
   ];
   sedes: SelectModelo[] = [
-    {value: 'piedra-Bolivar', viewValue: 'Piedra de bolivar'},
-    {value: 'san-Pablo', viewValue: 'San pablo'},
-    {value: 'san-Agustin', viewValue: 'San agustin'},
-    {value: 'zaragocilla', viewValue: 'Zaragocilla'}
+    {value: 'PiedraBolivar', viewValue: 'Piedra de bolivar'},
+    {value: 'SanPablo', viewValue: 'San pablo'},
+    {value: 'SanAgustin', viewValue: 'San agustin'},
+    {value: 'Zaragocilla', viewValue: 'Zaragocilla'}
   ];
   constructor(private authS: AuthService,
     private router: Router,

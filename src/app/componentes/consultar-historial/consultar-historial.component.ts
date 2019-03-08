@@ -18,12 +18,16 @@ export class ConsultarHistorialComponent implements OnInit {
   private in2 = 0;
   private historialMedico_aux : any;
   private registro : any;
+
   dataSource: MatTableDataSource<Estudiante>;
   dataSourceEmpleado : MatTableDataSource<Empleado>;
+
   displayedColumns: string[] = ['documento', 'nombre', 'codigo', 'programa', 'semestre', 'acciones'];
   displayedColumnsEmpleado: string[] = ['documento', 'nombre', 'cargo', 'estamento', 'acciones'];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   constructor(private pacienteService : PacienteService,
     public dialog: MatDialog) {
     
@@ -34,7 +38,7 @@ export class ConsultarHistorialComponent implements OnInit {
     this.historialMedico_aux = new HistorialMedico();
     this.listaEstudiantes = Array<Estudiante>();
     this.listaEmpleados = Array<Empleado>();
-     this.in = 0;
+    this.in = 0;
     this.in2 = 0;
     this.pacienteService.getListaEstudiantes().subscribe((d)=>{
       console.log(d);
@@ -49,7 +53,7 @@ export class ConsultarHistorialComponent implements OnInit {
           resultado.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
             console.log(d);
             this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
-            this.historialMedico_aux.addRegistroMedico(this.registro);
+            this.historialMedico_aux.agregarRegistroMedico(this.registro);
           });
           this.listaEstudiantes[this.in].setHistorial = this.historialMedico_aux;
           console.log(this.listaEstudiantes[this.in]);
@@ -78,7 +82,7 @@ export class ConsultarHistorialComponent implements OnInit {
           resultado.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
             console.log(d);
             this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
-            this.historialMedico_aux.addRegistroMedico(this.registro);
+            this.historialMedico_aux.agregarRegistroMedico(this.registro);
           });
           this.listaEmpleados[this.in2].setHistorial = this.historialMedico_aux;
           console.log(this.listaEmpleados[this.in2]);

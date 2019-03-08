@@ -63,7 +63,7 @@ export class AtenderComponent implements OnInit {
               datos.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
                 console.log(d);
                 this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
-                this.historialMedico_aux.addRegistroMedico(this.registro);
+                this.historialMedico_aux.agregarRegistroMedico(this.registro);
               });
               this.estudiante_aux.setHistorial = this.historialMedico_aux;
               console.log( this.estudiante_aux.getHistorial.getRegistrosMedicos);
@@ -94,7 +94,7 @@ export class AtenderComponent implements OnInit {
             datos.forEach((d : {diagnostico , fecha_registro, observaciones}) => {
               console.log(d);
               this.registro = new RegistroMedico(d.diagnostico, d.fecha_registro, d.observaciones);
-              this.historialMedico_aux.addRegistroMedico(this.registro);
+              this.historialMedico_aux.agregarRegistroMedico(this.registro);
             });
             this.empleado_aux.setHistorial = this.historialMedico_aux;
             console.log( this.empleado_aux.getHistorial.getRegistrosMedicos);

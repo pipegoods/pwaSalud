@@ -15,5 +15,9 @@ export class InventarioMedicamento {
     public set setMedicamentos(newMedicamentos : Array<Medicamento>) {
         this.medicamentos = newMedicamentos;
     }
+
+    public agregarMedicamento(medicamento : Medicamento) {
+        this.medicamentos.push(medicamento);
+    }
     
 }

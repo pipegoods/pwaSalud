@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, Inject} from '@angular/core';
 import {MatTableDataSource, MatPaginator, MatBottomSheetRef, MatBottomSheet, MAT_BOTTOM_SHEET_DATA} from '@angular/material';
 import { AuthService } from 'src/app/core/auth.service';
+import { InventarioService } from 'src/app/core/inventario.service';
 
 export interface PeriodicElement {
   Nombre: string;
@@ -25,12 +26,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit {
+  private enfermeria_aux : any;
   displayedColumns: string[] = ['Nombre', 'Presentacion', 'Cantidad', 'Fecha vencimiento',"acciones"];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private bottomSheet: MatBottomSheet,
-    private aauth: AuthService){}
+    private aauth: AuthService,
+    private inventarioService : InventarioService){
+      
+     aauth.user.subscribe((d)=>{
+       console.log(d);
+       
+     });
+      
+      
+      
+
+    }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -68,16 +81,16 @@ export class InventarioComponent implements OnInit {
 
   getSede(sede) {
     switch (sede) {
-      case 'piedra-Bolivar':
+      case 'PiedraBolivar':
         return 'Pierdra de Bolivar';
         break;
-      case 'san-Pablo':
+      case 'SanPablo':
         return 'San pablo';
         break;
-      case 'san-Agustin':
+      case 'SanAgustin':
         return 'San agustin';
         break;
-      case 'zaragocilla':
+      case 'Zaragocilla':
         return 'Zaragocilla';
         break;
       default:
