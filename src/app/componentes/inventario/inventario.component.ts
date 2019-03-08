@@ -5,7 +5,6 @@ import { InventarioService } from 'src/app/core/inventario.service';
 import { Enfermeria } from 'src/app/modelos/enfermeria.model';
 import { InventarioMedicamento } from 'src/app/modelos/inventario-medicamento.model';
 import { Medicamento } from 'src/app/modelos/medicamento.model';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 @Component({
   selector: 'app-inventario',
@@ -66,7 +65,7 @@ export class InventarioComponent implements OnInit {
           getNombre: '',
           getCantidad: '',
           getPresentacion: '',
-          getVencimiento: this.enfermeria_aux.getInventarioMedicamento.getMedicamentos[0].getVencimiento
+          getVencimiento: Date()
 
         },
         tipo : 'nuevo'

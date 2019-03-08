@@ -119,14 +119,15 @@ export class AtenderComponent implements OnInit {
   guardar () {
     (this.formPaciente.documento);
     this.registro = new RegistroMedico(this.formPaciente.diagnostico, new Date(), this.formPaciente.observaciones);
-    
     if (this.estudiante_aux) {
-      this.estudiante_aux.getHistorial.addRegistroMedico(this.registro);
+      console.log(this.estudiante_aux);
+      
+      this.estudiante_aux.getHistorial.agregarRegistroMedico(this.registro);
       this.pacienteService.agregarRegistroMedico(this.estudiante_aux, 1);
       this.clearAll();
       this.formPaciente.documento = '';
     } else if (this.empleado_aux){
-      this.empleado_aux.getHistorial.addRegistroMedico(this.registro);
+      this.empleado_aux.getHistorial.agregarRegistroMedico(this.registro);
       this.pacienteService.agregarRegistroMedico(this.empleado_aux, 2);
       this.clearAll();
       this.formPaciente.documento = '';
