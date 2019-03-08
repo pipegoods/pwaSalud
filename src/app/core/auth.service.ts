@@ -18,7 +18,6 @@ interface User {
   displayName?: string;
   sede?: string;
   rol?: string;
-  email?: string;
 }
 
 @Injectable({
@@ -92,7 +91,6 @@ export class AuthService {
           photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
           rol: user.rol || '',
           sede: user.sede || '',
-          email: user.email
         };
       } else {
          data = {
@@ -101,7 +99,6 @@ export class AuthService {
           photoURL: uuser.photoURL || 'https://goo.gl/Fz9nrQ',
           rol: uuser.rol || '',
           sede: uuser.sede || '',
-          email: user.email
         };
         
       }
