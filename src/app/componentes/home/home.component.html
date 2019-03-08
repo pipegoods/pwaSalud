@@ -7,49 +7,101 @@
 <!-- User NOT logged in -->
 
   <ng-template #guest>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="icon-block">
-            <h2 class="text-center text-primary"><i class="material-icons">flash_on</i></h2>
-            <h5 class="text-center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-      </div>
+    <div class="alert alert-secondary" role="alert">
+      You must login
     </div>
   </ng-template>
 
 <!-- User logged in -->
 <ng-template #authenticated>
-  <div *ngIf="auth.user | async as user">
-    <h3>Bienvenido, {{ user.displayName }}</h3>
-    <img class="img-fluid" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
-    <p class="text-truncate">UID: {{ user.uid }}</p>
-    <p>Tu sede es: {{getSede(user.sede)}}</p>
-    <p>Tu rol es: {{user.rol}}</p>
-    <button class="button" (click)="logout()">Logout</button>
-  </div>
+    <div *ngIf="auth.user | async as user">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+    
+                        <div class="card-body">
+                            <div class="card-title mb-4">
+                                <div class="d-flex justify-content-start">
+                                    <div class="image-container">
+                                        <img class="img-fluid" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                        <div class="middle">
+                                            <button mat-raised-button color="primary" (click)="logout()">
+                                              <span class="fas fa-sign-out-alt"></span>
+                                                Logout
+                                              </button>
+                                        </div>
+                                    </div>
+                                    <div class="userData ml-3">
+                                      <br>
+                                        <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a>Bienvenido, {{ user.displayName.split(" ")[0] }}</a></h2>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs mb-4" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content ml-1">
+                                        <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                            
+    
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">Nombre completo:</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    {{ user.displayName }}
+                                                </div>
+                                            </div>
+                                            <hr />
+    
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">Email:</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    {{ user.email }}
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">Sede:</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    {{getSede(user.sede)}}
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">Rol en enfermeria:</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    {{user.rol}}
+                                                </div>
+                                            </div>
+                                            
+    
+                                        </div>
 
-  <div *ngIf="auth.user | async as user"> 
-    <mat-grid-list cols="4" rowHeight="100px">
-      <mat-grid-tile>
-          <img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      </mat-grid-tile>
-      <mat-grid-tile>
-          {{getSede(user.sede)}}
-    </mat-grid-tile>
-    <mat-grid-tile>
-        {{user.rol}}
-    </mat-grid-tile>
-    </mat-grid-list>
-  </div>
 </ng-template>
