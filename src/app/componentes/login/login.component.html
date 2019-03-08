@@ -1,11 +1,76 @@
 
 <ng-container *ngIf="(authS.user | async) || {} as user">
-<div *ngIf="!user.uid">
-  <p>
-    Iniciar seccion con google
-  </p>
-  <button mat-raised-button color="warn" (click)="signInWithGoogle()">Google</button>
-  
+
+<div *ngIf="!user.uid" class="container-fluid portada">
+  <header class="text-center">
+      <div class="img-holder mt-3"><img class="img-fluid" style="height: 100px;" src="assets/img/UDC.png"/></div>
+      <div class="container mt-5">
+          <h1>PWA SALUD UDC</h1>
+          <p style="color: black" class="tagline"> ¡Gestiona facilmente historiales medicos de tus pacientes y maneja tu inventario! </p>
+      </div>
+ </header>
+  <div class="section light-bg text-center">
+      <div class="container">
+          <button mat-raised-button color="warn" (click)="signInWithGoogle()">
+              <span class="fab fa-google"></span>
+              Sign in with Google
+          </button>
+          <br><br>
+          <div class="section-title">
+              <h3>Caracteristicas</h3>
+          </div>
+          <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+        <div class="card-wrapper mb-60">
+          <div style="background: #fff" class="card-border">
+            <div class="card-icon">
+                              <img src="assets/img/icons8-múltiples-dispositivos-64.png" alt="">
+            </div>
+            <div class="card-text">
+                              <br>
+              <h4>Simple</h4>
+              <p style="text-align:justify">Trabaja en una plataforma amigable y deja a un lado todas esas herramientas dificiles
+                                  de usar para registrar los historiales medicos, ademas puedes ingresar desde cualquier
+                                  dispositivo con internet.</p>
+            </div>
+          </div>
+        </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                  <div class="card-wrapper mb-60">
+                      <div style="background: #fff" class="card-border">
+                          <div class="card-icon">
+                              <img src="assets/img/icons8-plan-de-tratamiento-64.png" alt="">
+                          </div>
+                          <div class="card-text">
+                              <br>
+                              <h4>Rapido</h4>
+                              <p style="text-align:justify">No pierdas tiempo consultando los registros fisicos, con esta 
+                                  aplicacion podras hacerlo de manera agil y directa. Podras consultar los registros
+                                  de un paciente o medicamento ingresando sus datos relacionados.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                  <div class="card-wrapper mb-60">
+                      <div style="background: #fff" class="card-border">
+                          <div class="card-icon">
+                              <img src="assets/img/icons8-seguridad-comprobado-64.png" alt="">
+                          </div>
+                          <div class="card-text">
+                              <br>
+                              <h4>Seguro</h4>
+                              <p style="text-align:justify">No te preocupes por la seguridad tu informacion, nos encargamos de tener todos tus 
+                                  datos en una base de datos segura, gararantizando siempre la seguridad  y privacidad 
+                                  de toda la informacion que manejes.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
 
