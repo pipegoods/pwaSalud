@@ -15,7 +15,7 @@
         <a mat-list-item routerLink="/consultarPaciente">Consultar paciente  &nbsp; <i class="fas fa-search"></i></a>
       </div>
       <mat-divider></mat-divider>
-      <div *ngIf="(authS.user | async)">
+      <div *ngIf="(authS.user | async) && (authS.user.getRol == 'enfermera-jefe')">
         <a mat-list-item routerLink="/inventario">Inventario  &nbsp; <i class="fas fa-truck-loading"></i></a>
       </div>
       
