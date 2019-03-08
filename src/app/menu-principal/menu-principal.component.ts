@@ -15,8 +15,17 @@ export class MenuPrincipalComponent {
     .pipe(
       map(result => result.matches)
     );
-
+  public bandera = false;
   constructor(private breakpointObserver: BreakpointObserver,
-    private authS: AuthService) {}
+    private authS: AuthService) {
+      this.authS.user.subscribe((d)=>{
+        console.log(d);
+        if (d.rol == 'enfermera-jefe') {
+          this.bandera = true;
+        } else {
+          this.bandera = false;
+        }
+      });
+    }
 
 }
